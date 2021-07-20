@@ -1,0 +1,20 @@
+{
+  "add_memo": "Aggiungi promemoria",
+  "edit_memo": "Modifica promemoria",
+  "delete_memo": "Elimina promemoria",
+  "delete_confirmation": "Vuoi veramente eliminare {{name}}?",
+  "delete_info": "Una volta cancellato, questo promemoria non potrà essere ripristinato.",
+  "memo_title": "Titolo",
+  "memo_description": "Descrizione",
+  "memo_created": "Promemoria creato!",
+
+  "button_add": "Aggiungi",
+  "button_edit": "Modifica",
+  "button_delete": "Elimina",
+  "button_confirm": "Conferma",
+  "button_cancel": "Cancella",
+
+  "select_language": "Seleziona lingua",
+  "language_it": "Italiano",
+  "language_en": "Inglese"
+}

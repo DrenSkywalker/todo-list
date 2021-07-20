@@ -1,0 +1,20 @@
+{
+  "add_memo": "Add memo",
+  "edit_memo": "Edit memo",
+  "delete_memo": "Delete memo",
+  "delete_confirmation": "Do you really want to delete {{name}}?",
+  "delete_info": "This memo will not be restored.",
+  "memo_title": "Title",
+  "memo_description": "Description",
+  "memo_created": "Memo created!",
+
+  "button_add": "Add",
+  "button_edit": "Edit",
+  "button_delete": "Delete",
+  "button_confirm": "Confirm",
+  "button_cancel": "Cancel",
+
+  "select_language": "Select language",
+  "language_it": "Italian",
+  "language_en": "English"
+}

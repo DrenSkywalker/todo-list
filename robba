@@ -1,0 +1,32 @@
+          <Button colorScheme="blue" mr={3} onClick={onClose}>
+            Edit
+          </Button>
+          <Button colorScheme="red" mr={3} onClick={onClose}>
+            Delete
+          </Button>
+          <Button variant="ghost" onClick={onClose}>
+            Cancel
+          </Button>
+
+
+    dialogTitle = dialogInputs.title;
+    dialogDescription = dialogInputs.description;
+
+
+        <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader isAddDialog={isAddDialog}>{dialogTitle}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody isAddDialog={isAddDialog}>{dialogDescription}</ModalBody>
+
+        <ModalFooter>
+          <Button colorScheme="blue" mr={3} onClick={onClose}>
+            Add
+          </Button>
+          <Button variant="ghost" onClick={onClose}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
