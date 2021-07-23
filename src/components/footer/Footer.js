@@ -9,8 +9,9 @@ import {
   DrawerBody,
   useDisclosure,
   IconButton,
+  Tooltip,
 } from "@chakra-ui/react";
-import { ReactComponent as IconArrowExpand } from "../../assets/icons/arrow_expand.svg";
+import assets from "./../../imports/assets/assets";
 
 import "./Footer.scss";
 
@@ -26,9 +27,15 @@ const Footer = (props) => {
 
   return (
     <footer id="footer">
-      <IconButton size="sm" onClick={onOpen}>
-        <IconArrowExpand className="icon" />
-      </IconButton>
+      <Tooltip
+        hasArrow
+        label={t("tooltip_select_language")}
+        aria-label="A tooltip"
+      >
+        <IconButton size="sm" onClick={onOpen}>
+          <img src={assets.iconExpand} alt="" className="icon" />
+        </IconButton>
+      </Tooltip>
 
       <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
         <DrawerOverlay />

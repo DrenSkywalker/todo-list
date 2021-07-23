@@ -14,6 +14,9 @@
   "button_confirm": "Conferma",
   "button_cancel": "Cancella",
 
+  "tooltip_add_memo": "Nuovo promemoria",
+  "tooltip_select_language": "Seleziona la lingua",
+
   "select_language": "Seleziona lingua",
   "language_it": "Italiano",
   "language_en": "Inglese"

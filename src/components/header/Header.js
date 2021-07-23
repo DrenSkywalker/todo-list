@@ -1,21 +1,23 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { IconButton, Tooltip } from "@chakra-ui/react";
-import { ReactComponent as IconAdd } from "../../assets/icons/add.svg";
-import { ReactComponent as IconCheck } from "../../assets/icons/check.svg";
 
+import assets from "./../../imports/assets/assets";
 import "./Header.scss";
 
 const Header = (props) => {
   const { onOpen, setDialogType } = props;
 
+  const { t } = useTranslation();
+
   return (
     <header id="header">
       <div id="header-content">
         <h1 id="title">
-          <IconCheck className="icon" /> To-Do
+          <img src={assets.iconCheck} alt="" className="icon" /> To-Do
         </h1>
 
-        <Tooltip label="Add new memo" aria-label="A tooltip">
+        <Tooltip hasArrow label={t("tooltip_add_memo")} aria-label="A tooltip">
           <IconButton
             size="sm"
             onClick={() => {
@@ -23,7 +25,7 @@ const Header = (props) => {
               onOpen();
             }}
           >
-            <IconAdd className="icon" />
+            <img src={assets.iconAdd} alt="" className="icon" />
           </IconButton>
         </Tooltip>
       </div>

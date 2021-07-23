@@ -4,13 +4,8 @@ import { useTranslation } from "react-i18next";
 import { ChakraProvider, useDisclosure, extendTheme } from "@chakra-ui/react";
 import Header from "./components/header/Header";
 import List from "./components/list/List";
-import DialogShow from "./components/dialog_show/DialogShow";
+import Dialog from "./components/dialog/Dialog";
 import Footer from "./components/footer/Footer";
-
-/*
-+ usare traduzioni file esterno
-seconda parte: usare Formik per la gestione del form e Yup per la validazione dei campi, 
-*/
 
 function App() {
   const { i18n } = useTranslation();
@@ -28,12 +23,10 @@ function App() {
     },
   });
 
-  console.log(reminders);
-
   return (
     <ChakraProvider theme={theme}>
       {isOpen && (
-        <DialogShow
+        <Dialog
           isOpen={isOpen}
           onOpen={onOpen}
           onClose={onClose}

@@ -1,7 +1,6 @@
-import React from "react";
-import { useRef } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { createRef } from "react";
 import { useTranslation } from "react-i18next";
+
 import {
   Modal,
   ModalOverlay,
@@ -16,9 +15,10 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import assets from "./../../imports/assets/assets";
-import "./DialogShow.scss";
+import utils from "./../../imports/utils/utils";
+import "./Dialog.scss";
 
-const DialogShow = (props) => {
+const Dialog = (props) => {
   const {
     isOpen,
     onOpen,
@@ -31,36 +31,10 @@ const DialogShow = (props) => {
   } = props;
 
   const { t } = useTranslation();
-
   const toast = useToast();
-  const inputTitle = useRef();
-  const inputDescription = useRef();
-
-  const saveReminder = () => {
-    const newReminder = {
-      id: uuidv4(),
-      title: inputTitle.current.value,
-      description: inputDescription.current.value,
-    };
-
-    setReminders((prevState) => [...prevState, newReminder]);
-  };
-
-  const deleteReminder = () => {
-    setReminders(
-      reminders.filter((element) => element.id !== currentReminder.id)
-    );
-  };
-
-  const editReminder = () => {
-    const newReminder = {
-      id: currentReminder.id,
-      title: inputTitle.current.value,
-      description: inputDescription.current.value,
-    };
-
-    deleteReminder();
-    setReminders((prevState) => [newReminder, ...prevState]);
+  const inputs = {
+    title: createRef(),
+    description: createRef(),
   };
 
   const ModalTitle = (props) => {
@@ -78,16 +52,19 @@ const DialogShow = (props) => {
   const ModalDescription = (props) => {
     return props.dialogType === "add" ? (
       <>
-        <Input ref={inputTitle} mb={4} placeholder={t("memo_title")} />
-        <Textarea ref={inputDescription} placeholder={t("memo_description")} />
+        <Input mb={4} ref={inputs.title} placeholder={t("memo_title")} />
+        <Textarea
+          ref={inputs.description}
+          placeholder={t("memo_description")}
+        />
       </>
     ) : props.dialogType === "view" ? (
       <p className="text">{currentReminder.description}</p>
     ) : props.dialogType === "edit" ? (
       <>
-        <Input ref={inputTitle} mb={4} defaultValue={currentReminder.title} />
+        <Input ref={inputs.title} mb={4} defaultValue={currentReminder.title} />
         <Textarea
-          ref={inputDescription}
+          ref={inputs.description}
           defaultValue={currentReminder.description}
         />
       </>
@@ -96,9 +73,8 @@ const DialogShow = (props) => {
         <img src={assets.imageDelete} alt="" className="image" />
         <p className="text">
           {t("delete_confirmation", { name: currentReminder.title })}
-          <br />
-          {t("delete_info")}
         </p>
+        <p className="text">{t("delete_info")}</p>
       </div>
     );
   };
@@ -111,16 +87,17 @@ const DialogShow = (props) => {
             colorScheme="blue"
             mr={3}
             onClick={() => {
-              saveReminder();
+              utils.saveReminder(inputs, setReminders);
               toast({
                 title: "Memo created",
-                status: "info",
+                status: "success",
                 duration: 5000,
                 isClosable: true,
               });
               onClose();
             }}
           >
+            {" "}
             {t("button_add")}
           </Button>
         ) : props.dialogType === "view" ? (
@@ -151,7 +128,18 @@ const DialogShow = (props) => {
             colorScheme="blue"
             mr={3}
             onClick={() => {
-              editReminder();
+              utils.editReminder(
+                reminders,
+                setReminders,
+                currentReminder,
+                inputs
+              );
+              toast({
+                title: "Memo edited",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+              });
               onClose();
             }}
           >
@@ -162,7 +150,13 @@ const DialogShow = (props) => {
             colorScheme="red"
             mr={3}
             onClick={() => {
-              deleteReminder();
+              utils.deleteReminder(reminders, setReminders, currentReminder);
+              toast({
+                title: "Memo deleted",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+              });
               onClose();
             }}
           >
@@ -196,4 +190,4 @@ const DialogShow = (props) => {
     </Modal>
   );
 };
-export default DialogShow;
+export default Dialog;

@@ -14,6 +14,9 @@
   "button_confirm": "Confirm",
   "button_cancel": "Cancel",
 
+  "tooltip_add_memo": "Add a new memo",
+  "tooltip_select_language": "Select a language",
+
   "select_language": "Select language",
   "language_it": "Italian",
   "language_en": "English"

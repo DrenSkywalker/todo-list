@@ -1,11 +1,16 @@
 .description {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
   .image {
     width: 100px;
     height: 100px;
     margin-bottom: 20px;
+  }
+
+  .text {
+    width: 100%;
+    text-align: left;
   }
 }
