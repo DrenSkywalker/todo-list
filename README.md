@@ -29,8 +29,7 @@ Not all features are available, I'm working on them 💻
 * ❌ Categories / tags can be created along with a searchbar to search for memos.
 * ➖ Fields validation (working on it).
 * ➖ Responsive UI (70% done).
-* ✔️ Switch between english and italian.
-* ❌ Multiple language support.
+* ✔️ Multiple language support.
 
 # License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
