@@ -26,6 +26,7 @@ Not all features are available, I'm working on them 💻
 * ❌ Memos can contain a sound.
 * ❌ Memos can contain a video.
 * ❌ Memos are stored in the local storage.
+* ❌ Categories / tags can be created along with a searchbar to search for memos.
 * ➖ Fields validation (working on it).
 * ➖ Responsive UI (70% done).
 * ✔️ Switch between english and italian.
