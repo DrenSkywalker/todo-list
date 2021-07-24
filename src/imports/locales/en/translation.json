@@ -14,6 +14,10 @@
   "button_confirm": "Confirm",
   "button_cancel": "Cancel",
 
+  "toast_memo_create": "Memo created!",
+  "toast_memo_edited": "Memo edited!",
+  "toast_memo_delete": "Memo deleted!",
+
   "tooltip_add_memo": "Add a new memo",
   "tooltip_select_language": "Select a language",
 

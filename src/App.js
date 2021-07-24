@@ -27,7 +27,11 @@ function App() {
   });
 
   useEffect(() => {
-    reminders.length > 0 && utils.saveLocalStorage(reminders);
+    reminders.length > 0
+      ? utils.saveLocalStorage(reminders)
+      : reminders.length === 0 &&
+        utils.isLocalStorageFull &&
+        utils.saveLocalStorage(reminders);
   }, [reminders]);
 
   return (
