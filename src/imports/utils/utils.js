@@ -1,13 +1,43 @@
 import { v4 as uuidv4 } from "uuid";
 
-const saveReminder = (inputs, setReminders) => {
+/* --------------------------------------- */
+/* ----- LANGUAGE HANDLING FUNCTIONS ----- */
+/* --------------------------------------- */
+const handleLanguageChange = (i18n, value) => {
+  i18n.changeLanguage(value);
+};
+
+/* --------------------------------------- */
+/* ------- LOCAL STORAGE FUNCTIONS ------- */
+/* --------------------------------------- */
+const saveLocalStorage = (reminders) => {
+  localStorage.setItem("reminders", JSON.stringify(reminders));
+};
+
+const getLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("reminders"));
+};
+
+const isLocalStorageFull = () => {
+  return localStorage.getItem("reminders") != null;
+};
+
+/* --------------------------------------- */
+/* ------- MEMO HANDLING FUNCTIONS ------- */
+/* --------------------------------------- */
+
+const replaceReminders = (setReminders, value) => {
+  setReminders((prevState) => [value, ...prevState]);
+};
+
+const saveReminder = (inputs, reminders, setReminders) => {
   const newReminder = {
     id: uuidv4(),
     title: inputs.title.current.value,
     description: inputs.description.current.value,
   };
 
-  setReminders((prevState) => [...prevState, newReminder]);
+  replaceReminders(setReminders, newReminder);
 };
 
 const deleteReminder = (reminders, setReminders, currentReminder) => {
@@ -24,9 +54,18 @@ const editReminder = (reminders, setReminders, currentReminder, inputs) => {
   };
 
   deleteReminder(reminders, setReminders, currentReminder);
-  setReminders((prevState) => [newReminder, ...prevState]);
+  replaceReminders(setReminders, newReminder);
 };
 
-const utils = { saveReminder, editReminder, deleteReminder };
+const utils = {
+  handleLanguageChange,
+  saveLocalStorage,
+  getLocalStorage,
+  isLocalStorageFull,
+  replaceReminders,
+  saveReminder,
+  editReminder,
+  deleteReminder,
+};
 
 export default utils;

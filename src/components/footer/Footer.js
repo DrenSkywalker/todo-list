@@ -12,6 +12,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import assets from "./../../imports/assets/assets";
+import utils from "./../../imports/utils/utils";
 
 import "./Footer.scss";
 
@@ -20,10 +21,6 @@ const Footer = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { t } = useTranslation();
-
-  const handleLanguageChange = (value) => {
-    i18n.changeLanguage(value);
-  };
 
   return (
     <footer id="footer">
@@ -50,7 +47,7 @@ const Footer = (props) => {
               maxW="200"
               placeholder={t("select_language")}
               onChange={(event) => {
-                handleLanguageChange(event.target.value);
+                utils.handleLanguageChange(i18n, event.target.value);
               }}
             >
               <option value="it">{t("language_it")}</option>

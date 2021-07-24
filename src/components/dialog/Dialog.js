@@ -87,7 +87,7 @@ const Dialog = (props) => {
             colorScheme="blue"
             mr={3}
             onClick={() => {
-              utils.saveReminder(inputs, setReminders);
+              utils.saveReminder(inputs, reminders, setReminders);
               toast({
                 title: "Memo created",
                 status: "success",
