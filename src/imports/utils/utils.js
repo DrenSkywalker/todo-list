@@ -30,11 +30,11 @@ const replaceReminders = (setReminders, value) => {
   setReminders((prevState) => [value, ...prevState]);
 };
 
-const saveReminder = (inputs, reminders, setReminders) => {
+const saveReminder = (values, setReminders) => {
   const newReminder = {
     id: uuidv4(),
-    title: inputs.title.current.value,
-    description: inputs.description.current.value,
+    title: values.title.current.value,
+    description: values.title.current.value,
   };
 
   replaceReminders(setReminders, newReminder);

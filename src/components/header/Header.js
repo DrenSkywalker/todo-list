@@ -9,12 +9,14 @@ const Header = (props) => {
   const { onOpen, setDialogType } = props;
 
   const { t } = useTranslation();
+  const IconAdd = assets.iconAdd;
+  const IconCheck = assets.iconCheck;
 
   return (
     <header id="header">
       <div id="header-content">
         <h1 id="title">
-          <img src={assets.iconCheck} alt="" className="icon" /> To-Do
+          <IconCheck className="icon" /> To-Do
         </h1>
 
         <Tooltip hasArrow label={t("tooltip_add_memo")} aria-label="A tooltip">
@@ -25,7 +27,7 @@ const Header = (props) => {
               onOpen();
             }}
           >
-            <img src={assets.iconAdd} alt="" className="icon" />
+            <IconAdd className="icon" />
           </IconButton>
         </Tooltip>
       </div>

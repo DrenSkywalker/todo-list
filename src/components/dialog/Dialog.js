@@ -1,6 +1,5 @@
-import React, { createRef } from "react";
+import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
-
 import {
   Modal,
   ModalOverlay,
@@ -10,10 +9,9 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Input,
-  Textarea,
   useToast,
 } from "@chakra-ui/react";
+import Form from "./../form/Form";
 import assets from "./../../imports/assets/assets";
 import utils from "./../../imports/utils/utils";
 import "./Dialog.scss";
@@ -29,12 +27,17 @@ const Dialog = (props) => {
     dialogType,
     setDialogType,
   } = props;
-
   const { t } = useTranslation();
   const toast = useToast();
-  const inputs = {
-    title: createRef(),
-    description: createRef(),
+
+  const formRefs = {
+    title: useRef(),
+    description: useRef(),
+  };
+
+  const inputsPlaceholders = {
+    title: t("memo_title"),
+    description: t("memo_description"),
   };
 
   const ModalTitle = (props) => {
@@ -50,24 +53,21 @@ const Dialog = (props) => {
   };
 
   const ModalDescription = (props) => {
-    return props.dialogType === "add" ? (
-      <>
-        <Input mb={4} ref={inputs.title} placeholder={t("memo_title")} />
-        <Textarea
-          ref={inputs.description}
-          placeholder={t("memo_description")}
-        />
-      </>
-    ) : props.dialogType === "view" ? (
+    const { dialogType } = props;
+    return dialogType === "add" ? (
+      <Form
+        formRefs={formRefs}
+        formType={dialogType}
+        placeholders={inputsPlaceholders}
+      />
+    ) : dialogType === "view" ? (
       <p className="text">{currentReminder.description}</p>
-    ) : props.dialogType === "edit" ? (
-      <>
-        <Input ref={inputs.title} mb={4} defaultValue={currentReminder.title} />
-        <Textarea
-          ref={inputs.description}
-          defaultValue={currentReminder.description}
-        />
-      </>
+    ) : dialogType === "edit" ? (
+      <Form
+        formRefs={formRefs}
+        formType={dialogType}
+        currentReminderValues={currentReminder}
+      />
     ) : (
       <div className="description">
         <img src={assets.imageDelete} alt="" className="image" />
@@ -80,14 +80,15 @@ const Dialog = (props) => {
   };
 
   const Buttons = (props) => {
+    const { dialogType } = props;
     return (
       <>
-        {props.dialogType === "add" ? (
+        {dialogType === "add" ? (
           <Button
             colorScheme="blue"
             mr={3}
             onClick={() => {
-              utils.saveReminder(inputs, reminders, setReminders);
+              utils.saveReminder(formRefs, setReminders);
               toast({
                 title: "Memo created",
                 status: "success",
@@ -97,10 +98,9 @@ const Dialog = (props) => {
               onClose();
             }}
           >
-            {" "}
             {t("button_add")}
           </Button>
-        ) : props.dialogType === "view" ? (
+        ) : dialogType === "view" ? (
           <>
             <Button
               colorScheme="blue"
@@ -123,7 +123,7 @@ const Dialog = (props) => {
               {t("button_delete")}
             </Button>
           </>
-        ) : props.dialogType === "edit" ? (
+        ) : dialogType === "edit" ? (
           <Button
             colorScheme="blue"
             mr={3}
@@ -132,7 +132,7 @@ const Dialog = (props) => {
                 reminders,
                 setReminders,
                 currentReminder,
-                inputs
+                formRefs
               );
               toast({
                 title: "Memo edited",

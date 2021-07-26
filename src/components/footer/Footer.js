@@ -21,6 +21,7 @@ const Footer = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { t } = useTranslation();
+  const IconExpand = assets.iconExpand;
 
   return (
     <footer id="footer">
@@ -30,7 +31,7 @@ const Footer = (props) => {
         aria-label="A tooltip"
       >
         <IconButton size="sm" onClick={onOpen}>
-          <img src={assets.iconExpand} alt="" className="icon" />
+          <IconExpand className="icon" />
         </IconButton>
       </Tooltip>
 

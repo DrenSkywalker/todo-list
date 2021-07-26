@@ -1,9 +1,11 @@
-import iconAdd from "./../../assets/icons/add.svg";
-import iconEdit from "./../../assets/icons/edit.svg";
-import iconDelete from "./../../assets/icons/delete.svg";
-import iconClose from "./../../assets/icons/close.svg";
-import iconCheck from "./../../assets/icons/check.svg";
-import iconExpand from "./../../assets/icons/arrow_expand.svg";
+import { ReactComponent as iconAdd } from "./../../assets/icons/add.svg";
+import { ReactComponent as iconEdit } from "./../../assets/icons/edit.svg";
+import { ReactComponent as iconDelete } from "./../../assets/icons/delete.svg";
+import { ReactComponent as iconClose } from "./../../assets/icons/close.svg";
+import { ReactComponent as iconCheck } from "./../../assets/icons/check.svg";
+import { ReactComponent as iconExpand } from "./../../assets/icons/arrow_expand.svg";
+import { ReactComponent as iconGallery } from "./../../assets/icons/gallery.svg";
+import { ReactComponent as iconUpload } from "./../../assets/icons/upload.svg";
 
 import imageDelete from "./../../assets/images/image_delete.png";
 
@@ -14,6 +16,8 @@ const assets = {
   iconClose,
   iconCheck,
   iconExpand,
+  iconGallery,
+  iconUpload,
   imageDelete,
 };
 
