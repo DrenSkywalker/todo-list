@@ -1,27 +1,29 @@
 {
   "files": {
-    "main.css": "/todo-list/static/css/main.1aa20c96.chunk.css",
-    "main.js": "/todo-list/static/js/main.33374b29.chunk.js",
-    "main.js.map": "/todo-list/static/js/main.33374b29.chunk.js.map",
+    "main.css": "/todo-list/static/css/main.6f657d87.chunk.css",
+    "main.js": "/todo-list/static/js/main.020183aa.chunk.js",
+    "main.js.map": "/todo-list/static/js/main.020183aa.chunk.js.map",
     "runtime-main.js": "/todo-list/static/js/runtime-main.0981a570.js",
     "runtime-main.js.map": "/todo-list/static/js/runtime-main.0981a570.js.map",
-    "static/js/2.ab35d8de.chunk.js": "/todo-list/static/js/2.ab35d8de.chunk.js",
-    "static/js/2.ab35d8de.chunk.js.map": "/todo-list/static/js/2.ab35d8de.chunk.js.map",
+    "static/js/2.e26ad56b.chunk.js": "/todo-list/static/js/2.e26ad56b.chunk.js",
+    "static/js/2.e26ad56b.chunk.js.map": "/todo-list/static/js/2.e26ad56b.chunk.js.map",
     "index.html": "/todo-list/index.html",
-    "static/css/main.1aa20c96.chunk.css.map": "/todo-list/static/css/main.1aa20c96.chunk.css.map",
-    "static/js/2.ab35d8de.chunk.js.LICENSE.txt": "/todo-list/static/js/2.ab35d8de.chunk.js.LICENSE.txt",
+    "static/css/main.6f657d87.chunk.css.map": "/todo-list/static/css/main.6f657d87.chunk.css.map",
+    "static/js/2.e26ad56b.chunk.js.LICENSE.txt": "/todo-list/static/js/2.e26ad56b.chunk.js.LICENSE.txt",
     "static/media/add.f5cb0175.svg": "/todo-list/static/media/add.f5cb0175.svg",
     "static/media/arrow_expand.94e7b265.svg": "/todo-list/static/media/arrow_expand.94e7b265.svg",
     "static/media/check.b4c37d1e.svg": "/todo-list/static/media/check.b4c37d1e.svg",
     "static/media/close.0457859b.svg": "/todo-list/static/media/close.0457859b.svg",
     "static/media/delete.32d3c050.svg": "/todo-list/static/media/delete.32d3c050.svg",
     "static/media/edit.836bf5af.svg": "/todo-list/static/media/edit.836bf5af.svg",
-    "static/media/image_delete.7da827fb.png": "/todo-list/static/media/image_delete.7da827fb.png"
+    "static/media/gallery.946c12b1.svg": "/todo-list/static/media/gallery.946c12b1.svg",
+    "static/media/image_delete.7da827fb.png": "/todo-list/static/media/image_delete.7da827fb.png",
+    "static/media/upload.29767db9.svg": "/todo-list/static/media/upload.29767db9.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.0981a570.js",
-    "static/js/2.ab35d8de.chunk.js",
-    "static/css/main.1aa20c96.chunk.css",
-    "static/js/main.33374b29.chunk.js"
+    "static/js/2.e26ad56b.chunk.js",
+    "static/css/main.6f657d87.chunk.css",
+    "static/js/main.020183aa.chunk.js"
   ]
 }
