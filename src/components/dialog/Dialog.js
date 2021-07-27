@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Modal,
@@ -10,6 +10,7 @@ import {
   ModalFooter,
   Button,
   useToast,
+  Avatar,
 } from "@chakra-ui/react";
 import Form from "./../form/Form";
 import assets from "./../../imports/assets/assets";
@@ -30,9 +31,12 @@ const Dialog = (props) => {
   const { t } = useTranslation();
   const toast = useToast();
 
+  const [images, setImages] = useState([]);
+
   const formRefs = {
     title: useRef(),
     description: useRef(),
+    images: images,
   };
 
   const inputsPlaceholders = {
@@ -58,14 +62,23 @@ const Dialog = (props) => {
       <Form
         formRefs={formRefs}
         formType={dialogType}
+        images={images}
+        setImages={setImages}
         placeholders={inputsPlaceholders}
       />
     ) : dialogType === "view" ? (
-      <p className="text">{currentReminder.description}</p>
+      <>
+        <p className="text">{currentReminder.description}</p>
+        {currentReminder.images.map((file) => (
+          <Avatar key={file.id} src={file.base64} size="md" mb={4} mr={2} />
+        ))}
+      </>
     ) : dialogType === "edit" ? (
       <Form
         formRefs={formRefs}
         formType={dialogType}
+        images={images}
+        setImages={setImages}
         currentReminderValues={currentReminder}
       />
     ) : (
@@ -150,7 +163,11 @@ const Dialog = (props) => {
             colorScheme="red"
             mr={3}
             onClick={() => {
-              utils.deleteReminder(reminders, setReminders, currentReminder);
+              utils.deleteElementFromArray(
+                setReminders,
+                reminders,
+                currentReminder
+              );
               toast({
                 title: "Memo deleted",
                 status: "success",
