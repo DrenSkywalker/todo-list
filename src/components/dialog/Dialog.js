@@ -10,7 +10,7 @@ import {
   ModalFooter,
   Button,
   useToast,
-  Avatar,
+  Image,
 } from "@chakra-ui/react";
 import Form from "./../form/Form";
 import assets from "./../../imports/assets/assets";
@@ -67,12 +67,18 @@ const Dialog = (props) => {
         placeholders={inputsPlaceholders}
       />
     ) : dialogType === "view" ? (
-      <>
+      <div className="description">
         <p className="text">{currentReminder.description}</p>
-        {currentReminder.images.map((file) => (
-          <Avatar key={file.id} src={file.base64} size="md" mb={4} mr={2} />
-        ))}
-      </>
+        {currentReminder.images.length > 0 && (
+          <ul className="gallery-list">
+            {currentReminder.images.map((file, j) => (
+              <li key={file.id} className={utils.organizeGallery(file)}>
+                <Image className="gallery-image" src={file.base64} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     ) : dialogType === "edit" ? (
       <Form
         formRefs={formRefs}
@@ -80,6 +86,7 @@ const Dialog = (props) => {
         images={images}
         setImages={setImages}
         currentReminderValues={currentReminder}
+        placeholders={inputsPlaceholders}
       />
     ) : (
       <div className="description">

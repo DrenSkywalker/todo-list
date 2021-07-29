@@ -59,6 +59,29 @@ const editReminder = (reminders, setReminders, currentReminder, values) => {
   saveElementToArray(setReminders, newReminder);
 };
 
+const organizeGallery = (file) => {
+  const baseClassName = "gallery-element";
+  let finalClassName = "";
+  const image = document.createElement("img");
+  let imageSize = {};
+  let aspectRatio;
+  image.src = file.base64;
+  imageSize = { w: image.width, h: image.height };
+  aspectRatio = (imageSize.w / imageSize.h).toFixed(1);
+  console.log(imageSize);
+  console.log(aspectRatio);
+
+  if (aspectRatio === "0.7" || aspectRatio === "0.6") {
+    finalClassName = `${baseClassName} tall`;
+  } else if (aspectRatio === "1.9") {
+    finalClassName = `${baseClassName} big`;
+  } else {
+    finalClassName = baseClassName;
+  }
+
+  return finalClassName;
+};
+
 /* --------------------------------------- */
 /* -- IMAGES UPLOAD HANDLING FUNCTIONS --- */
 /* --------------------------------------- */
@@ -100,6 +123,7 @@ const utils = {
   saveElementToArray,
   deleteElementFromArray,
   browseAndImportImages,
+  organizeGallery,
 };
 
 export default utils;

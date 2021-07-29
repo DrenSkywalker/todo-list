@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Input,
   InputGroup,
@@ -56,7 +56,7 @@ const Form = (props) => {
 
   const ImagesChips = () => {
     return (
-      <Slider>
+      <Slider type="chips">
         {images.map((file) => (
           <Tag
             maxW="75px"
@@ -125,11 +125,13 @@ const Form = (props) => {
         <>
           <Input
             ref={formRefs.title}
+            placeholder={placeholders.title}
             defaultValue={currentReminderValues.title}
             mb={4}
           />
           <Textarea
             ref={formRefs.description}
+            placeholder={placeholders.description}
             defaultValue={currentReminderValues.description}
             mb={4}
           />

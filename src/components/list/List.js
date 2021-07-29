@@ -1,9 +1,11 @@
 import React from "react";
-import { Box, Avatar } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
+import utils from "./../../imports/utils/utils";
 import "./List.scss";
 
 const List = (props) => {
   const { onOpen, reminders, setCurrentReminder, setDialogType } = props;
+
   return (
     <ul id="memo-list">
       {reminders.map((currentReminder, i) => (
@@ -23,9 +25,15 @@ const List = (props) => {
 
             <Box>{currentReminder.description}</Box>
 
-            {currentReminder.images.map((file) => (
-              <Avatar key={file.id} src={file.base64} size="md" mb={4} mr={2} />
-            ))}
+            {currentReminder.images.length > 0 && (
+              <ul className="gallery-list">
+                {currentReminder.images.map((file, j) => (
+                  <li key={file.id} className={utils.organizeGallery(file)}>
+                    <Image className="gallery-image" src={file.base64} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </Box>
         </li>
       ))}
