@@ -22,7 +22,7 @@ Not all features are available, I'm working on them 💻
 * ✔️ Add, edit and delete memos.
 * ✔️ Memos can have a title and a description.
 * ❌ Memos can contain a file.
-* ➖ Memos can contain an image or a gallery (50% done).
+* ➖ Memos can contain an image or a gallery (80% done).
 * ❌ Memos can contain a sound.
 * ❌ Memos can contain a video.
 * ✔️ Memos are stored in the local storage.
