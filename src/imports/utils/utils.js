@@ -40,7 +40,7 @@ const saveReminder = (values, setReminders) => {
   const newReminder = {
     id: uuidv4(),
     title: values.title.current.value,
-    description: values.title.current.value,
+    description: values.description.current.value,
     images: values.images,
   };
 
@@ -68,8 +68,8 @@ const organizeGallery = (file) => {
   image.src = file.base64;
   imageSize = { w: image.width, h: image.height };
   aspectRatio = (imageSize.w / imageSize.h).toFixed(1);
-  console.log(imageSize);
-  console.log(aspectRatio);
+  //console.log(imageSize);
+  //console.log(aspectRatio);
 
   if (aspectRatio === "0.7" || aspectRatio === "0.6") {
     finalClassName = `${baseClassName} tall`;
