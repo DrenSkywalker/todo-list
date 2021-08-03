@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Modal,
@@ -11,8 +11,9 @@ import {
   Button,
   useToast,
   Image,
+  Box,
 } from "@chakra-ui/react";
-import Form from "./../form/Form";
+import CustomForm from "./../form/Form";
 import assets from "./../../imports/assets/assets";
 import utils from "./../../imports/utils/utils";
 import "./Dialog.scss";
@@ -30,19 +31,7 @@ const Dialog = (props) => {
   } = props;
   const { t } = useTranslation();
   const toast = useToast();
-
   const [images, setImages] = useState([]);
-
-  const formRefs = {
-    title: useRef(),
-    description: useRef(),
-    images: images,
-  };
-
-  const inputsPlaceholders = {
-    title: t("memo_title"),
-    description: t("memo_description"),
-  };
 
   const ModalTitle = (props) => {
     return props.dialogType === "add" ? (
@@ -59,12 +48,12 @@ const Dialog = (props) => {
   const ModalDescription = (props) => {
     const { dialogType } = props;
     return dialogType === "add" ? (
-      <Form
-        formRefs={formRefs}
+      <CustomForm
         formType={dialogType}
         images={images}
         setImages={setImages}
-        placeholders={inputsPlaceholders}
+        setReminders={setReminders}
+        onClose={onClose}
       />
     ) : dialogType === "view" ? (
       <div className="description">
@@ -80,13 +69,14 @@ const Dialog = (props) => {
         )}
       </div>
     ) : dialogType === "edit" ? (
-      <Form
-        formRefs={formRefs}
+      <CustomForm
         formType={dialogType}
         images={images}
         setImages={setImages}
+        reminders={reminders}
+        setReminders={setReminders}
+        onClose={onClose}
         currentReminderValues={currentReminder}
-        placeholders={inputsPlaceholders}
       />
     ) : (
       <div className="description">
@@ -103,24 +93,7 @@ const Dialog = (props) => {
     const { dialogType } = props;
     return (
       <>
-        {dialogType === "add" ? (
-          <Button
-            colorScheme="blue"
-            mr={3}
-            onClick={() => {
-              utils.saveReminder(formRefs, setReminders);
-              toast({
-                title: "Memo created",
-                status: "success",
-                duration: 5000,
-                isClosable: true,
-              });
-              onClose();
-            }}
-          >
-            {t("button_add")}
-          </Button>
-        ) : dialogType === "view" ? (
+        {dialogType === "view" ? (
           <>
             <Button
               colorScheme="blue"
@@ -142,54 +115,29 @@ const Dialog = (props) => {
             >
               {t("button_delete")}
             </Button>
+            <Button variant="ghost" onClick={onClose}>
+              {t("button_cancel")}
+            </Button>
           </>
-        ) : dialogType === "edit" ? (
-          <Button
-            colorScheme="blue"
-            mr={3}
-            onClick={() => {
-              utils.editReminder(
-                reminders,
-                setReminders,
-                currentReminder,
-                formRefs
-              );
-              toast({
-                title: "Memo edited",
-                status: "success",
-                duration: 5000,
-                isClosable: true,
-              });
-              onClose();
-            }}
-          >
-            {t("button_confirm")}
-          </Button>
         ) : (
-          <Button
-            colorScheme="red"
-            mr={3}
-            onClick={() => {
-              utils.deleteElementFromArray(
-                setReminders,
-                reminders,
-                currentReminder
-              );
-              toast({
-                title: "Memo deleted",
-                status: "success",
-                duration: 5000,
-                isClosable: true,
-              });
-              onClose();
-            }}
-          >
-            {t("button_delete")}
-          </Button>
+          dialogType === "delete" && (
+            <Button
+              colorScheme="red"
+              mr={3}
+              onClick={() => {
+                utils.deleteElementFromArray(
+                  setReminders,
+                  reminders,
+                  currentReminder
+                );
+                utils.showToast(toast, t("toast_memo_deleted"));
+                onClose();
+              }}
+            >
+              {t("button_delete")}
+            </Button>
+          )
         )}
-        <Button variant="ghost" onClick={onClose}>
-          {t("button_cancel")}
-        </Button>
       </>
     );
   };
@@ -205,11 +153,13 @@ const Dialog = (props) => {
 
         <ModalBody>
           <ModalDescription dialogType={dialogType} />
-        </ModalBody>
 
-        <ModalFooter>
-          <Buttons dialogType={dialogType} />
-        </ModalFooter>
+          {(dialogType === "view" || dialogType === "delete") && (
+            <Box w="full" d="flex" justifyContent="flex-end" mt={4} mb={4}>
+              <Buttons dialogType={dialogType} />
+            </Box>
+          )}
+        </ModalBody>
       </ModalContent>
     </Modal>
   );

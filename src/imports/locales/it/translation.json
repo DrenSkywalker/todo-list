@@ -14,12 +14,16 @@
   "button_confirm": "Conferma",
   "button_cancel": "Cancella",
 
-  "toast_memo_create": "Promemoria creato!",
+  "toast_memo_created": "Promemoria creato!",
   "toast_memo_edited": "Promemoria modificato!",
-  "toast_memo_delete": "Promemoria cancellato!",
+  "toast_memo_deleted": "Promemoria cancellato!",
 
   "tooltip_add_memo": "Nuovo promemoria",
   "tooltip_select_language": "Seleziona la lingua",
+
+  "form_field_title": "Titolo",
+  "form_field_description": "Descrizione",
+  "form_error_required": "è un campo obbligatorio!",
 
   "select_language": "Seleziona lingua",
   "language_it": "Italiano",

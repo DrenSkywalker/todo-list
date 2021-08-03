@@ -14,12 +14,16 @@
   "button_confirm": "Confirm",
   "button_cancel": "Cancel",
 
-  "toast_memo_create": "Memo created!",
+  "toast_memo_created": "Memo created!",
   "toast_memo_edited": "Memo edited!",
-  "toast_memo_delete": "Memo deleted!",
+  "toast_memo_deleted": "Memo deleted!",
 
   "tooltip_add_memo": "Add a new memo",
   "tooltip_select_language": "Select a language",
+
+  "form_field_title": "Title",
+  "form_field_description": "Description",
+  "form_error_required": "is required!",
 
   "select_language": "Select language",
   "language_it": "Italian",

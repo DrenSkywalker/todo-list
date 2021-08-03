@@ -36,26 +36,31 @@ const deleteElementFromArray = (setArray, array, element) => {
 /* --------------------------------------- */
 /* ------- MEMO HANDLING FUNCTIONS ------- */
 /* --------------------------------------- */
-const saveReminder = (values, setReminders) => {
+const saveReminder = (setReminders, values) => {
   const newReminder = {
     id: uuidv4(),
-    title: values.title.current.value,
-    description: values.description.current.value,
+    title: values.title,
+    description: values.description,
     images: values.images,
   };
 
   saveElementToArray(setReminders, newReminder);
 };
 
-const editReminder = (reminders, setReminders, currentReminder, values) => {
+const editReminder = (
+  reminders,
+  setReminders,
+  currentReminderValues,
+  newValues
+) => {
   const newReminder = {
-    id: currentReminder.id,
-    title: values.title.current.value,
-    description: values.description.current.value,
-    images: values.images,
+    id: currentReminderValues.id,
+    title: newValues.title,
+    description: newValues.description,
+    images: newValues.images,
   };
 
-  deleteElementFromArray(setReminders, reminders, currentReminder);
+  deleteElementFromArray(setReminders, reminders, currentReminderValues);
   saveElementToArray(setReminders, newReminder);
 };
 
@@ -68,8 +73,6 @@ const organizeGallery = (file) => {
   image.src = file.base64;
   imageSize = { w: image.width, h: image.height };
   aspectRatio = (imageSize.w / imageSize.h).toFixed(1);
-  //console.log(imageSize);
-  //console.log(aspectRatio);
 
   if (aspectRatio === "0.7" || aspectRatio === "0.6") {
     finalClassName = `${baseClassName} tall`;
@@ -80,6 +83,15 @@ const organizeGallery = (file) => {
   }
 
   return finalClassName;
+};
+
+const showToast = (toast, title) => {
+  return toast({
+    title: title,
+    status: "success",
+    duration: 3000,
+    isClosable: true,
+  });
 };
 
 /* --------------------------------------- */
@@ -97,6 +109,7 @@ const getBase64 = (file) => {
 const browseAndImportImages = async (setImages) => {
   let input = document.createElement("input");
   input.type = "file";
+  input.accept = "image/*";
   input.multiple = "true";
   input.onchange = async () => {
     for (const el of input.files) {
@@ -124,6 +137,7 @@ const utils = {
   deleteElementFromArray,
   browseAndImportImages,
   organizeGallery,
+  showToast,
 };
 
 export default utils;
