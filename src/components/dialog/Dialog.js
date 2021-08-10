@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   Modal,
@@ -7,13 +7,12 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
   Button,
   useToast,
-  Image,
   Box,
 } from "@chakra-ui/react";
-import CustomForm from "./../form/Form";
+import GalleryList from "./../galleryList/GalleryList";
+import MemoForm from "./../memoForm/MemoForm";
 import assets from "./../../imports/assets/assets";
 import utils from "./../../imports/utils/utils";
 import "./Dialog.scss";
@@ -31,27 +30,27 @@ const Dialog = (props) => {
   } = props;
   const { t } = useTranslation();
   const toast = useToast();
-  const [images, setImages] = useState([]);
 
   const ModalTitle = (props) => {
-    return props.dialogType === "add" ? (
-      <h2 className="h2">{t("add_memo")}</h2>
-    ) : props.dialogType === "view" ? (
-      <h2 className="h2">{currentReminder.title}</h2>
-    ) : props.dialogType === "edit" ? (
-      <h2 className="h2">{t("edit_memo")}</h2>
-    ) : (
-      <h2 className="h2">{t("delete_memo")}</h2>
-    );
+    const { dialogType } = props;
+    let title = "";
+
+    dialogType === "add"
+      ? (title = t("add_memo"))
+      : dialogType === "view"
+      ? (title = currentReminder.title)
+      : dialogType === "edit"
+      ? (title = t("edit_memo"))
+      : (title = t("delete_memo"));
+
+    return <h2 className="h2">{title}</h2>;
   };
 
   const ModalDescription = (props) => {
     const { dialogType } = props;
     return dialogType === "add" ? (
-      <CustomForm
+      <MemoForm
         formType={dialogType}
-        images={images}
-        setImages={setImages}
         setReminders={setReminders}
         onClose={onClose}
       />
@@ -59,20 +58,12 @@ const Dialog = (props) => {
       <div className="description">
         <p className="text">{currentReminder.description}</p>
         {currentReminder.images.length > 0 && (
-          <ul className="gallery-list">
-            {currentReminder.images.map((file, j) => (
-              <li key={file.id} className={utils.organizeGallery(file)}>
-                <Image className="gallery-image" src={file.base64} />
-              </li>
-            ))}
-          </ul>
+          <GalleryList currentReminder={currentReminder} />
         )}
       </div>
     ) : dialogType === "edit" ? (
-      <CustomForm
+      <MemoForm
         formType={dialogType}
-        images={images}
-        setImages={setImages}
         reminders={reminders}
         setReminders={setReminders}
         onClose={onClose}

@@ -1,0 +1,21 @@
+.images-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.images-chips-container {
+  width: calc(100% - (40px * 2));
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}

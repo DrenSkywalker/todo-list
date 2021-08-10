@@ -1,5 +1,5 @@
 import React from "react";
-import List from "./../list/List";
+import MemoList from "./../memoList/MemoList";
 import "./Main.scss";
 
 const Main = (props) => {
@@ -8,7 +8,7 @@ const Main = (props) => {
   return (
     <main id="main">
       <div id="main-content">
-        <List
+        <MemoList
           onOpen={onOpen}
           reminders={reminders}
           setCurrentReminder={setCurrentReminder}

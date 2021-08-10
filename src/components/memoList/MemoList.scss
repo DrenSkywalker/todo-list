@@ -1,0 +1,11 @@
+#memo-list {
+  columns: 2 150px;
+  column-gap: 10px;
+
+  .memo-element {
+    width: 100%;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    cursor: pointer;
+  }
+}
