@@ -22,13 +22,13 @@ Not all features are available, I'm working on them 💻
 * ✔️ Add, edit and delete memos.
 * ✔️ Memos can have a title and a description.
 * ❌ Memos can contain a file.
-* ➖ Memos can contain an image or a gallery (80% done).
+* ➖ Memos can contain an image or a gallery (90% done).
 * ❌ Memos can contain a sound.
 * ❌ Memos can contain a video.
 * ✔️ Memos are stored in the local storage.
-* ❌ Categories / tags can be created along with a searchbar to search for memos.
-* ➖ Fields validation (70% done).
-* ➖ Responsive UI (70% done).
+* ➖ Categories / tags can be created along with a searchbar to search for memos. (50% done)
+* ✔️ Fields validation.
+* ✔️ Responsive UI.
 * ✔️ Multiple language support.
 
 # License
