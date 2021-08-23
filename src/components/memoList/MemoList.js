@@ -1,6 +1,7 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import GalleryList from "./../galleryList/GalleryList";
+import TagsList from "./../tagsList/TagsList";
 import "./MemoList.scss";
 
 const MemoList = (props) => {
@@ -27,6 +28,12 @@ const MemoList = (props) => {
 
             {currentReminder.images.length > 0 && (
               <GalleryList currentReminder={currentReminder} />
+            )}
+
+            {currentReminder.tags.length > 0 && (
+              <div className="tags-list-container">
+                <TagsList type="list" tags={currentReminder.tags} />
+              </div>
             )}
           </Box>
         </li>

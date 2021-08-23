@@ -15,7 +15,7 @@ const ImageList = (props) => {
         boxSize="1.25em"
         bg="gray.200"
         onClick={() => {
-          utils.deleteElementFromArray(setImages, images, file);
+          utils.deleteElementFromArray(setImages, images, file.id);
         }}
       >
         <IconClose className="icon" />

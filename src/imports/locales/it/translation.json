@@ -6,7 +6,7 @@
   "delete_info": "Una volta cancellato, questo promemoria non potrà essere ripristinato.",
   "memo_title": "Titolo",
   "memo_description": "Descrizione",
-  "memo_created": "Promemoria creato!",
+  "memo_tags": "Tags (usa lo spazio dopo ogni tag)",
 
   "button_add": "Aggiungi",
   "button_edit": "Modifica",

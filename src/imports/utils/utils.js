@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 /* --------------------------------------- */
 /* ------- LOCAL STORAGE FUNCTIONS ------- */
 /* --------------------------------------- */
@@ -18,45 +16,22 @@ const isLocalStorageFull = () => {
 /* --------------------------------------- */
 /* ------ ARRAYS HANDLING FUNCTIONS ------ */
 /* --------------------------------------- */
-const saveElementToArray = (setArray, value) => {
-  setArray((prevState) => [value, ...prevState]);
+const saveElementToArray = (setArray, element) => {
+  setArray((prevState) => [element, ...prevState]);
 };
 
-const deleteElementFromArray = (setArray, array, element) => {
-  setArray(array.filter((el) => el.id !== element.id));
+const deleteElementFromArray = (setArray, array, id) => {
+  setArray(array.filter((el) => el.id !== id));
+};
+
+const editElementOfArray = (setArray, array, id, element) => {
+  deleteElementFromArray(setArray, array, id);
+  saveElementToArray(setArray, element);
 };
 
 /* --------------------------------------- */
-/* ------- MEMO HANDLING FUNCTIONS ------- */
+/* ---------- GLOBAL FUNCTIONS ----------- */
 /* --------------------------------------- */
-const saveReminder = (setReminders, values) => {
-  const newReminder = {
-    id: uuidv4(),
-    title: values.title,
-    description: values.description,
-    images: values.images,
-  };
-
-  saveElementToArray(setReminders, newReminder);
-};
-
-const editReminder = (
-  reminders,
-  setReminders,
-  currentReminderValues,
-  newValues
-) => {
-  const newReminder = {
-    id: currentReminderValues.id,
-    title: newValues.title,
-    description: newValues.description,
-    images: newValues.images,
-  };
-
-  deleteElementFromArray(setReminders, reminders, currentReminderValues);
-  saveElementToArray(setReminders, newReminder);
-};
-
 const showToast = (toast, title) => {
   return toast({
     title: title,
@@ -73,10 +48,9 @@ const utils = {
   saveLocalStorage,
   getLocalStorage,
   isLocalStorageFull,
-  saveReminder,
-  editReminder,
   saveElementToArray,
   deleteElementFromArray,
+  editElementOfArray,
   showToast,
 };
 

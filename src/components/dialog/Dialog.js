@@ -12,6 +12,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import GalleryList from "./../galleryList/GalleryList";
+import TagsList from "./../tagsList/TagsList";
 import MemoForm from "./../memoForm/MemoForm";
 import assets from "./../../imports/assets/assets";
 import utils from "./../../imports/utils/utils";
@@ -59,6 +60,11 @@ const Dialog = (props) => {
         <p className="text">{currentReminder.description}</p>
         {currentReminder.images.length > 0 && (
           <GalleryList currentReminder={currentReminder} />
+        )}
+        {currentReminder.tags.length > 0 && (
+          <div className="tags-list-container">
+            <TagsList type="list" tags={currentReminder.tags} />
+          </div>
         )}
       </div>
     ) : dialogType === "edit" ? (
@@ -119,7 +125,7 @@ const Dialog = (props) => {
                 utils.deleteElementFromArray(
                   setReminders,
                   reminders,
-                  currentReminder
+                  currentReminder.id
                 );
                 utils.showToast(toast, t("toast_memo_deleted"));
                 onClose();

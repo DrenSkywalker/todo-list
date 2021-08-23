@@ -6,7 +6,7 @@
   "delete_info": "This memo will not be restored.",
   "memo_title": "Title",
   "memo_description": "Description",
-  "memo_created": "Memo created!",
+  "memo_tags": "Tags (use space after each tag)",
 
   "button_add": "Add",
   "button_edit": "Edit",

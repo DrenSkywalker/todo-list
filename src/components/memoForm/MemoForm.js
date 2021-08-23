@@ -15,7 +15,7 @@ import { InputControl, SubmitButton, TextareaControl } from "formik-chakra-ui";
 import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
 import ImageList from "./../imageList/ImageList";
-import ImageChipList from "./../imageChipList/ImageChipList";
+import TagsList from "./../tagsList/TagsList";
 import assets from "./../../imports/assets/assets";
 import utils from "./../../imports/utils/utils";
 import "./MemoForm.scss";
@@ -24,15 +24,21 @@ const MemoForm = (props) => {
   const { formType, reminders, setReminders, currentReminderValues, onClose } =
     props;
 
-  const [images, setImages] = useState([]);
-
   const { t } = useTranslation();
   const toast = useToast();
+
+  const [images, setImages] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [tagsInputValue, setTagsInputValue] = useState("");
 
   const IconGallery = assets.iconGallery;
   const IconUpload = assets.iconUpload;
 
   useEffect(() => {
+    if (formType === "edit") {
+      images.length === 0 && setImages(currentReminderValues.images);
+      tags.length === 0 && setTags(currentReminderValues.tags);
+    }
     formType === "edit" &&
       images.length === 0 &&
       setImages(currentReminderValues.images);
@@ -41,6 +47,7 @@ const MemoForm = (props) => {
   const placeholders = {
     title: t("memo_title"),
     description: t("memo_description"),
+    tags: t("memo_tags"),
   };
 
   const initialValues =
@@ -65,18 +72,27 @@ const MemoForm = (props) => {
   const onSubmit = (values) => {
     sleep(300).then(() => {
       if (formType === "add") {
-        utils.saveReminder(setReminders, {
+        utils.saveElementToArray(setReminders, {
+          id: uuidv4(),
           title: values.title,
           description: values.description,
           images: images,
+          tags: tags,
         });
         utils.showToast(toast, t("toast_memo_created"));
       } else if (formType === "edit") {
-        utils.editReminder(reminders, setReminders, currentReminderValues, {
-          title: values.title,
-          description: values.description,
-          images: images,
-        });
+        utils.editElementOfArray(
+          setReminders,
+          reminders,
+          currentReminderValues.id,
+          {
+            id: currentReminderValues.id,
+            title: values.title,
+            description: values.description,
+            images: images,
+            tags: tags,
+          }
+        );
         utils.showToast(toast, t("toast_memo_edited"));
       }
       onClose();
@@ -109,33 +125,52 @@ const MemoForm = (props) => {
     input.click();
   };
 
-  const ImagesField = () => {
+  const InputGroupBuild = () => {
     return (
-      <>
-        <div className="images-preview-container">
-          <ImageList images={images} setImages={setImages} />
+      <InputGroup mb={4}>
+        <InputLeftElement>
+          <IconGallery className="icon" />
+        </InputLeftElement>
+        <Input isReadOnly />
+        <div className="images-chips-container">
+          <TagsList type="images" tags={images} setTags={setImages} />
         </div>
-        <InputGroup>
-          <InputLeftElement>
-            <IconGallery className="icon" />
-          </InputLeftElement>
-          <Input isReadOnly />
-          <div className="images-chips-container">
-            <ImageChipList images={images} setImages={setImages} />
-          </div>
-          <InputRightElement>
-            <IconButton size="sm">
-              <IconUpload
-                className="icon"
-                onClick={() => {
-                  browseAndImportImages(setImages);
-                }}
-              />
-            </IconButton>
-          </InputRightElement>
-        </InputGroup>
-      </>
+        <InputRightElement>
+          <IconButton size="sm">
+            <IconUpload
+              className="icon"
+              onClick={() => {
+                browseAndImportImages(setImages);
+              }}
+            />
+          </IconButton>
+        </InputRightElement>
+      </InputGroup>
     );
+  };
+
+  const createTag = (tag) => {
+    setTags((prevState) => [
+      ...prevState,
+      { id: uuidv4(), name: tag.replace(/\s/g, "") },
+    ]);
+  };
+
+  const handleTagsInputValueChange = (event) => {
+    event.target.value.length !== 0 && setTagsInputValue(event.target.value);
+  };
+
+  const handleTagsInputValueClear = () => {
+    setTagsInputValue("");
+  };
+
+  const handleKey = (event) => {
+    if (event.charCode === 32) {
+      if (event.target.value !== " ") {
+        createTag(event.target.value);
+      }
+      handleTagsInputValueClear();
+    }
   };
 
   return (
@@ -157,7 +192,20 @@ const MemoForm = (props) => {
               textareaProps={{ placeholder: placeholders.description }}
               mb={4}
             />
-            <ImagesField />
+            <div className="images-preview-container">
+              <ImageList images={images} setImages={setImages} />
+            </div>
+            <InputGroupBuild />
+            {tags.length > 0 && (
+              <TagsList type="tags" tags={tags} setTags={setTags} />
+            )}
+            <Input
+              value={tagsInputValue}
+              onChange={handleTagsInputValueChange}
+              onKeyPress={handleKey}
+              placeholder={placeholders.tags}
+              mt={3}
+            />
           </Box>
           <Box w="full" d="flex" justifyContent="flex-end" mb={4}>
             {formType === "add" ? (
