@@ -9,9 +9,11 @@ A minimal to-do list built in React.
 
 ## ✏️ How does it work?
 
-For now, you can add, edit and delete multiple memos.  
+You can add, edit and delete multiple memos.
 
-You can add a new memo by pressing the "+" top-right button. All your memos are shown inside cute, minimalist boxes. You can edit a memo and it will be show at the top. You can also delete a memo to definitely erase it from this universe. 🌌  
+You can add a new memo by pressing the "+" top-right button. All your memos are shown inside cute, minimalist boxes. You can edit a memo by clicking on it. You can also delete a memo to definitely erase it from this universe. 🌌  
+
+Inside a memo you can put a title, a description, one or multiple images, some tags. 
 
 This project is a wip.
 
