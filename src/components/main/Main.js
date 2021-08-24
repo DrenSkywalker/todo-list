@@ -3,13 +3,17 @@ import MemoList from "./../memoList/MemoList";
 import "./Main.scss";
 
 const Main = (props) => {
-  const { onOpen, reminders, setCurrentReminder, setDialogType } = props;
+  const { onOpen, searchTag, reminders, setCurrentReminder, setDialogType } =
+    props;
+
+  console.log(searchTag);
 
   return (
     <main id="main">
       <div id="main-content">
         <MemoList
           onOpen={onOpen}
+          searchTag={searchTag}
           reminders={reminders}
           setCurrentReminder={setCurrentReminder}
           setDialogType={setDialogType}

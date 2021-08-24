@@ -16,6 +16,8 @@ function App() {
   );
   const [currentReminder, setCurrentReminder] = useState();
   const [dialogType, setDialogType] = useState();
+  const [searchTag, setSearchTag] = useState("");
+
   const theme = extendTheme({
     components: {
       Button: {
@@ -44,9 +46,14 @@ function App() {
           setDialogType={setDialogType}
         />
       )}
-      <Header onOpen={onOpen} setDialogType={setDialogType} />
+      <Header
+        onOpen={onOpen}
+        setDialogType={setDialogType}
+        setSearchTag={setSearchTag}
+      />
       <Main
         onOpen={onOpen}
+        searchTag={searchTag}
         reminders={reminders}
         setCurrentReminder={setCurrentReminder}
         setDialogType={setDialogType}

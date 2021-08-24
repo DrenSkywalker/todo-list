@@ -10,7 +10,6 @@ const TagsList = (props) => {
     const { tag } = props;
     return (
       <Tag
-        key={tag.id}
         maxW="100px"
         size="md"
         borderRadius="full"
@@ -34,12 +33,12 @@ const TagsList = (props) => {
   return type === "images" ? (
     <Slider type="chips">
       {tags.map((tag) => (
-        <TagItem tag={tag} />
+        <TagItem key={tag.id} tag={tag} />
       ))}
     </Slider>
   ) : (
     (type === "tags" || type === "list") &&
-      tags.map((tag) => <TagItem tag={tag} />)
+      tags.map((tag) => <TagItem key={tag.id} tag={tag} />)
   );
 };
 export default TagsList;

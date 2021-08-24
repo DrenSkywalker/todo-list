@@ -7,6 +7,7 @@
   "memo_title": "Titolo",
   "memo_description": "Descrizione",
   "memo_tags": "Tags (usa lo spazio dopo ogni tag)",
+  "search_placeholder": "Cerca tramite tag",
 
   "button_add": "Aggiungi",
   "button_edit": "Modifica",
