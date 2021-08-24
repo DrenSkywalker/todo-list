@@ -17,6 +17,8 @@ Inside a memo you can put a title, a description, one or multiple images, some t
 
 This project is a wip.
 
+<p align="center"><a href="https://drenskywalker.github.io/todo-list/" target="blank_"><img src="https://img.shields.io/badge/click here to try it out-ff69b4?style=flat"></a></p>
+
 ## 🔎 Features
 
 Not all features are available, I'm working on them 💻
