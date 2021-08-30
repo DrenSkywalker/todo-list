@@ -6,8 +6,6 @@ const Main = (props) => {
   const { onOpen, searchTag, reminders, setCurrentReminder, setDialogType } =
     props;
 
-  console.log(searchTag);
-
   return (
     <main id="main">
       <div id="main-content">
