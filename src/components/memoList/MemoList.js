@@ -11,7 +11,7 @@ const MemoList = (props) => {
       {reminders.map((currentReminder) =>
         searchTag !== "" ? (
           currentReminder.tags.filter((e) => {
-            return e.name === searchTag;
+            return e.name.includes(searchTag);
           }).length > 0 && (
             <MemoItem
               key={currentReminder.id}
