@@ -171,7 +171,7 @@ const MemoForm = (props) => {
     if (event.target.value.length !== 0 && event.target.value !== " ") {
       setInputTagsValue(event.target.value);
       if (inputKeyPressed === 32) {
-        alert();
+        //alert();
         createTag(event.target.value);
         handleInputTagsValueClear();
       }
@@ -211,7 +211,7 @@ const MemoForm = (props) => {
             <Input
               value={inputTagsValue}
               onChange={handleInputTagsValueChange}
-              onKeyPress={handleKeyPressed}
+              onKeyDown={handleKeyPressed}
               placeholder={placeholders.tags}
               mt={3}
             />
