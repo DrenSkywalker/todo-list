@@ -14,6 +14,7 @@ const MemoList = (props) => {
             return e.name === searchTag;
           }).length > 0 && (
             <MemoItem
+              key={currentReminder.id}
               currentReminder={currentReminder}
               setCurrentReminder={setCurrentReminder}
               setDialogType={setDialogType}
@@ -22,6 +23,7 @@ const MemoList = (props) => {
           )
         ) : (
           <MemoItem
+            key={currentReminder.id}
             currentReminder={currentReminder}
             setCurrentReminder={setCurrentReminder}
             setDialogType={setDialogType}

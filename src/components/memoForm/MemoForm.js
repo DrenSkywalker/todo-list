@@ -8,6 +8,7 @@ import {
   Button,
   IconButton,
   useToast,
+  useControllableState,
 } from "@chakra-ui/react";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -29,7 +30,13 @@ const MemoForm = (props) => {
 
   const [images, setImages] = useState([]);
   const [tags, setTags] = useState([]);
-  const [tagsInputValue, setTagsInputValue] = useState("");
+
+  const [tagsValue, setTagsValue] = useState("");
+  const [inputTagsValue, setInputTagsValue] = useControllableState({
+    tagsValue,
+    onChange: setTagsValue,
+  });
+  const [inputKeyPressed, setInputKeyPressed] = useState();
 
   const IconGallery = assets.iconGallery;
   const IconUpload = assets.iconUpload;
@@ -156,21 +163,22 @@ const MemoForm = (props) => {
     ]);
   };
 
-  const handleTagsInputValueChange = (event) => {
-    event.target.value.length !== 0 && setTagsInputValue(event.target.value);
+  const handleInputTagsValueClear = () => {
+    setInputTagsValue("");
   };
 
-  const handleTagsInputValueClear = () => {
-    setTagsInputValue("");
-  };
-
-  const handleKey = (event) => {
-    if (event.charCode === 32) {
-      if (event.target.value !== " ") {
+  const handleInputTagsValueChange = (event) => {
+    if (event.target.value.length > 0 && event.target.value !== " ") {
+      setInputTagsValue(event.target.value);
+      if (inputKeyPressed === 32) {
         createTag(event.target.value);
+        handleInputTagsValueClear();
       }
-      handleTagsInputValueClear();
     }
+  };
+
+  const handleKeyPressed = (event) => {
+    setInputKeyPressed(event.keyCode || event.which);
   };
 
   return (
@@ -200,9 +208,9 @@ const MemoForm = (props) => {
               <TagsList type="tags" tags={tags} setTags={setTags} />
             )}
             <Input
-              value={tagsInputValue}
-              onChange={handleTagsInputValueChange}
-              onKeyPress={handleKey}
+              value={inputTagsValue}
+              onChange={handleInputTagsValueChange}
+              onKeyPress={handleKeyPressed}
               placeholder={placeholders.tags}
               mt={3}
             />

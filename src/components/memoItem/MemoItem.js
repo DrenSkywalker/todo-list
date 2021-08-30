@@ -8,7 +8,6 @@ const MemoItem = (props) => {
 
   return (
     <li
-      key={currentReminder.id}
       className="memo-element"
       onClick={() => {
         setCurrentReminder(currentReminder);
