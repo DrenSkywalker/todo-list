@@ -170,7 +170,7 @@ const MemoForm = (props) => {
   const handleInputTagsValueChange = (event) => {
     if (event.target.value.length !== 0 && event.target.value !== " ") {
       setInputTagsValue(event.target.value);
-      if (inputKeyPressed === 32) {
+      if (inputKeyPressed === " ") {
         createTag(event.target.value);
         handleInputTagsValueClear();
       }
@@ -178,9 +178,9 @@ const MemoForm = (props) => {
   };
 
   const handleKeyPressed = (event) => {
-    alert(event.which);
+    alert(event.key);
     //setInputKeyPressed(event.keyCode || event.which);
-    setInputKeyPressed(event.which);
+    setInputKeyPressed(event.key);
   };
 
   return (
