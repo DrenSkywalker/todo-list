@@ -168,19 +168,13 @@ const MemoForm = (props) => {
   };
 
   const handleInputTagsValueChange = (event) => {
-    if (event.target.value.length !== 0 && event.target.value !== " ") {
+    if (event.target.value[0] !== " ") {
       setInputTagsValue(event.target.value);
       if (event.target.value[event.target.value.length - 1] === " ") {
         createTag(event.target.value);
         handleInputTagsValueClear();
       }
     }
-  };
-
-  const handleKeyPressed = (event) => {
-    alert(event.key);
-    //setInputKeyPressed(event.keyCode || event.which);
-    setInputKeyPressed(event.key);
   };
 
   return (
@@ -212,7 +206,6 @@ const MemoForm = (props) => {
             <Input
               value={inputTagsValue}
               onChange={handleInputTagsValueChange}
-              //onKeyDown={handleKeyPressed}
               placeholder={placeholders.tags}
               mt={3}
             />
