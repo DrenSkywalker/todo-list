@@ -178,8 +178,9 @@ const MemoForm = (props) => {
   };
 
   const handleKeyPressed = (event) => {
-    alert(event.keyCode || event.which);
-    setInputKeyPressed(event.keyCode || event.which);
+    alert(event.which);
+    //setInputKeyPressed(event.keyCode || event.which);
+    setInputKeyPressed(event.which);
   };
 
   return (
