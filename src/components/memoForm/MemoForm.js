@@ -31,10 +31,10 @@ const MemoForm = (props) => {
   const [images, setImages] = useState([]);
   const [tags, setTags] = useState([]);
 
-  const [tagsValue, setTagsValue] = useState("");
+  const [value, setValue] = useState("");
   const [inputTagsValue, setInputTagsValue] = useControllableState({
-    tagsValue,
-    onChange: setTagsValue,
+    value,
+    onChange: setValue,
   });
   const [inputKeyPressed, setInputKeyPressed] = useState();
 
